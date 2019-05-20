@@ -24,20 +24,19 @@ post '/visit' do
   @date_time = params[:date_time]
   @color = params[:color]
 
-  if @username == ''
-    @error ='Введите имя'
-  end
+  hh = {:username => 'Введите имя', 
+        :phone => 'Введите номер телефона', 
+        :date_time => 'Неправильная дата и время' }
 
-  if @phone == ''
-    @error ='Введите номер телефона'
-  end
-
-  if @date_time == ''
-    @error ='Неправильная дата и время'
-  end
-
-  if @error != ''
-    return erb :visit
+  #для каждой пыры ключ-значение
+  hh.each do |key,value|
+      if params[key] == ''
+        # переменной error присвоить value из хеша hh
+        # (а value из хеша присовить сообщение об ошибке)
+        @error = hh[key]
+        #вернуть предтавление visit
+        return erb :visit
+      end
   end
 
   @title = "Спасибо!"
