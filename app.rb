@@ -29,15 +29,22 @@ post '/visit' do
         :date_time => 'Неправильная дата и время' }
 
   #для каждой пыры ключ-значение
-  hh.each do |key,value|
-      if params[key] == ''
+ # hh.each do |key,value|
+ #     if params[key] == ''
         # переменной error присвоить value из хеша hh
         # (а value из хеша присовить сообщение об ошибке)
-        @error = hh[key]
+#        @error = hh[key]
         #вернуть предтавление visit
-        return erb :visit
-      end
+#        return erb :visit
+#      end
+#  end
+
+@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
+
+  if @error != ''
+    return erb :visit
   end
+
 
   @title = "Спасибо!"
   @message = "Уважаемый #{@username}, мы ждём вас #{@date_time}. Ваша парикмахер #{@baber}, цвет окраски #{@color}"
