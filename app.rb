@@ -25,10 +25,21 @@ post '/visit' do
   @color = params[:color]
 
   if @username == ''
-
     @error ='Введите имя'
+  end
+
+  if @phone == ''
+    @error ='Введите номер телефона'
+  end
+
+  if @date_time == ''
+    @error ='Неправильная дата и время'
+  end
+
+  if @error != ''
     return erb :visit
   end
+
   @title = "Спасибо!"
   @message = "Уважаемый #{@username}, мы ждём вас #{@date_time}. Ваша парикмахер #{@baber}, цвет окраски #{@color}"
 
