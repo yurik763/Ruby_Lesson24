@@ -3,12 +3,12 @@
 <form action="/contacts" method="POST">
 	<div class="form-group">
     	<label>Введите ваш email</label>
-    	<input name="email" type="text" class="form-control" placeholder="Ваш email">
+    	<input name="email" type="text" class="form-control" placeholder="Ваш email" value="<%= @email %>">
   	</div>
 	
 	<div class="form-group">
     <label>Оставьте ваше сообщение</label>
-    <textarea name="userstext" class="form-control" rows="3"></textarea>
+    <textarea name="userstext" class="form-control" rows="3" value="<%= @userstext %>"></textarea>
   	</div>
 	
 	<button type="submit" class="btn btn-primary">Отправить</button>
