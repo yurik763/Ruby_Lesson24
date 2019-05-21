@@ -65,6 +65,14 @@ post '/contacts' do
   @email = params[:email]
   @userstext = params[:userstext]
 
+  hh1 = {:email => 'Введите email', :userstext => 'Введите текст'}
+
+  @error = hh1.select {|key,_| params[key] == ""}.values.join(", ")
+
+  if @error != ''
+    return erb :contacts
+  end
+
   @title = "Спасибо!"
   @message = "Ваше сообщение принято"
 
