@@ -81,7 +81,23 @@ post '/contacts' do
   f.write "Email: #{@email}, сообщение: #{@userstext}\n"
   f.close
 
-  erb :message
+require 'pony'
+Pony.mail({
+  :to => 'yuri.makarenko.ruby@gmail.com',
+  :subject => params[:email] + "пользователь пишет вам",
+  :body => params[:userstext],
+  :via => :smtp,
+  :via_options => {
+    :address              => 'smtp.gmail.com',
+    :port                 => '587',
+    :enable_starttls_auto => true,
+    :user_name            => 'yuri.makarenko.ruby@gmail.com',
+    :password             => 'вставить пароль',
+    :authentication       => :plain, 
+    :domain               => "localhost.localdomain" 
+  }
+})
+erb :message
 end
 
 configure do
